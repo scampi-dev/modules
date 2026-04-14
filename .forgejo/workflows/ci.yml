@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: scampi
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build scampi + scampls
+        run: |
+          rm -rf /tmp/scampi
+          git clone --depth=1 https://codeberg.org/scampi-dev/scampi.git /tmp/scampi
+          cd /tmp/scampi && just build
+
+      - name: Check module files
+        run: PATH="/tmp/scampi/build/bin:$PATH" just check
+
+      - name: Run module tests
+        run: PATH="/tmp/scampi/build/bin:$PATH" just test
