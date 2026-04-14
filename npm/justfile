@@ -1,0 +1,25 @@
+default_version := "v2.14.0"
+spec_base := "https://raw.githubusercontent.com/NginxProxyManager/nginx-proxy-manager"
+
+[default]
+[doc("Show available recipes")]
+@help:
+  just --unsorted --list
+
+[doc("Regenerate api.scampi from the NPM Swagger spec at the given version")]
+gen version=default_version:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  url="{{spec_base}}/{{version}}/backend/schema/swagger.json"
+  tmp=$(mktemp)
+  echo "Fetching $url ..."
+  curl -sfL "$url" -o "$tmp"
+  # Strip external $ref in securitySchemes (can't resolve from raw download)
+  jq 'del(.components.securitySchemes)' "$tmp" > "${tmp}.clean"
+  scampi gen api --prefix=/api --module npm --no-test -o api.scampi "${tmp}.clean"
+  rm -f "$tmp" "${tmp}.clean"
+  echo "Regenerated api.scampi from NPM {{version}}"
+
+[doc("Run module tests")]
+test:
+  scampi test proxy_host_test.scampi

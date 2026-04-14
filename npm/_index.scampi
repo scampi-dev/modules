@@ -1,0 +1,141 @@
+// SPDX-License-Identifier: Apache-2.0
+
+// Nginx Proxy Manager module — idempotent management of proxy hosts
+// and SSL certificates via the NPM REST API.
+//
+// Target setup:
+//
+//   import "std"
+//   import "std/rest"
+//
+//   let npm = rest.target {
+//     name     = "npm"
+//     base_url = "http://192.168.1.1:81"
+//     auth     = rest.bearer {
+//       token_endpoint = "/api/tokens"
+//       identity       = std.secret("npm.email")
+//       secret         = std.secret("npm.password")
+//     }
+//   }
+//
+// Usage:
+//
+//   import "scampi.dev/modules/npm"
+//
+//   let cert = npm.certificate {
+//     domain          = "grafana.example.com"
+//     email           = "admin@example.com"
+//     dns_credentials = "dns_cloudflare_api_token = ${std.secret("cf.token")}"
+//   }
+//
+//   std.deploy(name = "proxy", targets = [npm_target]) {
+//     cert
+//     npm.proxy_host {
+//       domain         = "grafana.example.com"
+//       forward_host   = "192.168.1.50"
+//       forward_port   = 3000
+//       certificate_id = std.ref(cert, ".id")
+//     }
+//   }
+
+module npm
+
+import "std"
+import "std/rest"
+
+// Certificates
+// -----------------------------------------------------------------------------
+//
+// Ensures a Let's Encrypt certificate exists for the given domain.
+// If missing, creates it via the NPM API with DNS challenge. The
+// step's output is the certificate JSON from NPM — use
+// `std.ref(cert, ".id")` to capture the ID for proxy_host.
+
+decl certificate(
+  domain:          string,
+  email:           string,
+  dns_provider:    string = "cloudflare",
+  dns_credentials: string,
+) std.Step {
+  return rest.resource {
+    desc = "certificate: " + domain
+    query = get_nginx_certificates(
+      check = rest.jq {
+        expr = ".[] | select(.domain_names[] == \"" + domain + "\")"
+      }
+    )
+    missing = post_nginx_certificates()
+    state = {
+      "domain_names": [domain],
+      "provider":     "letsencrypt",
+      "meta": {
+        "dns_challenge":            true,
+        "dns_provider":             dns_provider,
+        "dns_provider_credentials": dns_credentials,
+        "letsencrypt_agree":        true,
+        "letsencrypt_email":        email,
+        "propagation_seconds":      30,
+      },
+    }
+  }
+}
+
+// Proxy Hosts
+// -----------------------------------------------------------------------------
+//
+// Ensures a proxy host exists for the given domain. Queries the full
+// proxy host list and checks for a matching domain via jq. If
+// missing, creates the host with the provided settings. If present,
+// updates it to match the declared state via rest.resource state
+// diffing.
+//
+// Use `std.ref(cert, ".id")` for certificate_id to bind the cert
+// created by `npm.certificate`:
+//
+//   let cert = npm.certificate { domain = "example.com", ... }
+//   npm.proxy_host {
+//     domain         = "example.com"
+//     certificate_id = std.ref(cert, ".id")
+//     ...
+//   }
+
+decl proxy_host(
+  domain:                  string,
+  forward_scheme:          string = "http",
+  forward_host:            string,
+  forward_port:            int,
+  ssl_forced:              bool = true,
+  http2_support:           bool = true,
+  block_exploits:          bool = true,
+  allow_websocket_upgrade: bool = false,
+  caching_enabled:         bool = false,
+  hsts_enabled:            bool = false,
+  hsts_subdomains:         bool = false,
+  advanced_config:         string = "",
+  certificate_id:          any?,
+) std.Step {
+  return rest.resource {
+    desc = "proxy_host: " + domain
+    query = get_nginx_proxy_hosts(
+      check = rest.jq {
+        expr = ".[] | select(.domain_names[] == \"" + domain + "\")"
+      }
+    )
+    missing = post_nginx_proxy_hosts()
+    state = {
+      "domain_names":            [domain],
+      "forward_scheme":          forward_scheme,
+      "forward_host":            forward_host,
+      "forward_port":            forward_port,
+      "ssl_forced":              ssl_forced,
+      "http2_support":           http2_support,
+      "block_exploits":          block_exploits,
+      "allow_websocket_upgrade": allow_websocket_upgrade,
+      "caching_enabled":         caching_enabled,
+      "hsts_enabled":            hsts_enabled,
+      "hsts_subdomains":         hsts_subdomains,
+      "advanced_config":         advanced_config,
+      "certificate_id":          certificate_id,
+    }
+  }
+}

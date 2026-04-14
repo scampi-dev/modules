@@ -1,0 +1,60 @@
+// Smoke test for the npm module.
+//
+// Exercises the certificate → proxy_host flow with std.ref():
+// 1. Certificate step queries certs, finds none, creates one
+// 2. proxy_host step queries hosts, finds none, creates one
+//    with certificate_id = std.ref(cert, ".id")
+//
+// The mock returns a cert response with id=42 so the ref resolves.
+
+module main
+
+import "std"
+import "std/rest"
+import "std/test"
+import "std/test/matchers"
+import "scampi.dev/modules/npm"
+
+let mock = test.target_rest_mock(
+  name     = "npm",
+  base_url = "http://localhost:81",
+  routes = {
+    "GET /api/nginx/certificates":  test.response(status = 200, body = "[]"),
+    "POST /api/nginx/certificates": test.response(status = 201, body = "{\"id\": 42}"),
+    "GET /api/nginx/proxy-hosts":   test.response(status = 200, body = "[]"),
+    "POST /api/nginx/proxy-hosts":  test.response(status = 201),
+  },
+  expect_requests = [
+    test.request(method = "GET", path = "/api/nginx/certificates"),
+    test.request(
+      method = "POST",
+      path   = "/api/nginx/certificates",
+      body   = matchers.has_substring("\"grafana.example.com\""),
+    ),
+    test.request(method = "GET", path = "/api/nginx/proxy-hosts"),
+    test.request(
+      method = "POST",
+      path   = "/api/nginx/proxy-hosts",
+      // Verify the ref resolved: cert mock returns {"id": 42},
+      // so certificate_id in the proxy host body should be 42.
+      body   = matchers.has_substring("42"),
+    ),
+  ],
+)
+
+let cert = npm.certificate {
+  domain          = "grafana.example.com"
+  email           = "admin@example.com"
+  dns_credentials = "dns_cloudflare_api_token = test"
+}
+
+std.deploy(name = "proxy", targets = [mock]) {
+  cert
+
+  npm.proxy_host {
+    domain         = "grafana.example.com"
+    forward_host   = "192.168.1.50"
+    forward_port   = 3000
+    certificate_id = std.ref(cert, ".id")
+  }
+}
