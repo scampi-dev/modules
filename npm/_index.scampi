@@ -51,7 +51,7 @@ import "std/rest"
 // step's output is the certificate JSON from NPM — use
 // `std.ref(cert, ".id")` to capture the ID for proxy_host.
 
-decl certificate(
+pub decl certificate(
   domain:          string,
   email:           string,
   dns_provider:    string = "cloudflare",
@@ -99,7 +99,7 @@ decl certificate(
 //     ...
 //   }
 
-decl proxy_host(
+pub decl proxy_host(
   domain:                  string,
   forward_scheme:          string = "http",
   forward_host:            string,
