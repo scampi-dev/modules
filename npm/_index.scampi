@@ -52,29 +52,29 @@ import "std/rest"
 // `std.ref(cert, ".id")` to capture the ID for proxy_host.
 
 pub decl certificate(
-  domain:          string,
-  email:           string,
-  dns_provider:    string = "cloudflare",
-  dns_credentials: string,
+  domain:          string
+  email:           string
+  dns_provider:    string = "cloudflare"
+  dns_credentials: string
 ) std.Step {
   return rest.resource {
-    desc = "certificate: " + domain
-    query = get_nginx_certificates(
+    desc    = "certificate: " + domain
+    query   = get_nginx_certificates(
       check = rest.jq {
         expr = ".[] | select(.domain_names[] == \"" + domain + "\")"
-      }
+      },
     )
     missing = post_nginx_certificates()
-    state = {
+    state   = {
       "domain_names": [domain],
-      "provider":     "letsencrypt",
+      "provider": "letsencrypt",
       "meta": {
-        "dns_challenge":            true,
-        "dns_provider":             dns_provider,
+        "dns_challenge": true,
+        "dns_provider": dns_provider,
         "dns_provider_credentials": dns_credentials,
-        "letsencrypt_agree":        true,
-        "letsencrypt_email":        email,
-        "propagation_seconds":      30,
+        "letsencrypt_agree": true,
+        "letsencrypt_email": email,
+        "propagation_seconds": 30,
       },
     }
   }
@@ -100,42 +100,42 @@ pub decl certificate(
 //   }
 
 pub decl proxy_host(
-  domain:                  string,
-  forward_scheme:          string = "http",
-  forward_host:            string,
-  forward_port:            int,
-  ssl_forced:              bool = true,
-  http2_support:           bool = true,
-  block_exploits:          bool = true,
-  allow_websocket_upgrade: bool = false,
-  caching_enabled:         bool = false,
-  hsts_enabled:            bool = false,
-  hsts_subdomains:         bool = false,
-  advanced_config:         string = "",
-  certificate_id:          any?,
+  domain:                  string
+  forward_scheme:          string = "http"
+  forward_host:            string
+  forward_port:            int
+  ssl_forced:              bool = true
+  http2_support:           bool = true
+  block_exploits:          bool = true
+  allow_websocket_upgrade: bool = false
+  caching_enabled:         bool = false
+  hsts_enabled:            bool = false
+  hsts_subdomains:         bool = false
+  advanced_config:         string = ""
+  certificate_id:          any?
 ) std.Step {
   return rest.resource {
-    desc = "proxy_host: " + domain
-    query = get_nginx_proxy_hosts(
+    desc    = "proxy_host: " + domain
+    query   = get_nginx_proxy_hosts(
       check = rest.jq {
         expr = ".[] | select(.domain_names[] == \"" + domain + "\")"
-      }
+      },
     )
     missing = post_nginx_proxy_hosts()
-    state = {
-      "domain_names":            [domain],
-      "forward_scheme":          forward_scheme,
-      "forward_host":            forward_host,
-      "forward_port":            forward_port,
-      "ssl_forced":              ssl_forced,
-      "http2_support":           http2_support,
-      "block_exploits":          block_exploits,
+    state   = {
+      "domain_names": [domain],
+      "forward_scheme": forward_scheme,
+      "forward_host": forward_host,
+      "forward_port": forward_port,
+      "ssl_forced": ssl_forced,
+      "http2_support": http2_support,
+      "block_exploits": block_exploits,
       "allow_websocket_upgrade": allow_websocket_upgrade,
-      "caching_enabled":         caching_enabled,
-      "hsts_enabled":            hsts_enabled,
-      "hsts_subdomains":         hsts_subdomains,
-      "advanced_config":         advanced_config,
-      "certificate_id":          certificate_id,
+      "caching_enabled": caching_enabled,
+      "hsts_enabled": hsts_enabled,
+      "hsts_subdomains": hsts_subdomains,
+      "advanced_config": advanced_config,
+      "certificate_id": certificate_id,
     }
   }
 }
