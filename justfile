@@ -4,6 +4,7 @@
   just --unsorted --list
 
 mod npm
+mod unifi
 
 [doc("Check all module files (scampls check)")]
 check:
@@ -18,15 +19,4 @@ check:
 
 [doc("Run all module tests")]
 test:
-  #!/usr/bin/env bash
-  set -euo pipefail
-  failed=0
-  for mod in */scampi.mod; do
-    dir=$(dirname "$mod")
-    for t in "$dir"/*_test.scampi; do
-      [ -f "$t" ] || continue
-      echo "test $t"
-      scampi test "$t" || failed=1
-    done
-  done
-  exit $failed
+  scampi test ./...

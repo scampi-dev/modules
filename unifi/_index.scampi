@@ -1,0 +1,175 @@
+// SPDX-License-Identifier: Apache-2.0
+
+// UniFi Network module — idempotent management of UniFi resources
+// via the Integration API (v9.3+).
+//
+// Target setup:
+//
+//   import "std"
+//   import "std/rest"
+//   import "std/secrets"
+//
+//   let age = secrets.from_age(path = "secrets.age.json")
+//
+//   let unifi = rest.target {
+//     name     = "unifi"
+//     base_url = "https://10.10.1.1/proxy/network"
+//     auth     = rest.header { name = "X-API-Key", value = age.get("unifi.api_key") }
+//     tls      = rest.tls_insecure {}
+//   }
+//
+// Usage:
+//
+//   import "scampi.dev/modules/unifi"
+//
+//   let site = age.get("unifi.site_id")
+//
+//   std.deploy(name = "networks", targets = [unifi]) {
+//     unifi.network { site_id = site, name = "Servers", vlan_id = 2 }
+//   }
+//
+//   std.deploy(name = "clients", targets = [unifi]) {
+//     unifi.client {
+//       site   = "default"
+//       name   = "pihole"
+//       mac    = "aa:bb:cc:dd:ee:ff"
+//       ip     = "10.10.10.10"
+//       network_id = "..."
+//     }
+//   }
+
+module unifi
+
+import "std"
+import "std/rest"
+
+// Clients (Fixed IP)
+// -----------------------------------------------------------------------------
+//
+// Ensures a client exists with a fixed IP reservation. Looks up by
+// MAC address. If missing, creates the client entry. If present,
+// updates it to match the declared state.
+//
+// Uses the legacy API (/proxy/network/api/s/{site}/rest/user).
+
+pub decl client(
+  site:       string = "default"
+  name:       string
+  mac:        string
+  ip:         string
+  network_id: string = ""
+) std.Step {
+  let s = {
+    "mac": mac,
+    "name": name,
+    "fixed_ip": ip,
+    "use_fixedip": true,
+  }
+  if network_id != "" {
+    s["network_id"] = network_id
+  }
+  return rest.resource {
+    desc     = "client: " + name + " (" + mac + " → " + ip + ")"
+    query    = legacy_list_user(
+      siteId = site,
+      check  = rest.jq {
+        expr = ".data[] | select(.mac == \"" + mac + "\")"
+      },
+    )
+    missing  = legacy_create_user(siteId = site)
+    found    = legacy_update_user(siteId = site, id = "{id}")
+    bindings = {
+      "id": rest.jq { expr = "._id" },
+    }
+    state    = s
+  }
+}
+
+// Client Set (Fixed IP — full reconciliation)
+// -----------------------------------------------------------------------------
+//
+// Declares the complete set of fixed IP reservations. Items not in
+// the list will have their fixed IP cleared on the next apply.
+// Config is the truth — remove a line, next apply cleans it up.
+//
+// Uses the legacy API (/proxy/network/api/s/{site}/rest/user).
+
+func build_client_item(c: map[string, any]) map[string, any] {
+  let item = {
+    "mac": c["mac"],
+    "name": c["name"],
+    "fixed_ip": c["ip"],
+    "use_fixedip": true,
+    "local_dns_record_enabled": false,
+    "local_dns_record": "",
+  }
+  if c["dns"] != none {
+    item["local_dns_record_enabled"] = true
+    item["local_dns_record"] = c["dns"]
+  }
+  return item
+}
+
+pub decl client_set(
+  site:    string = "default"
+  clients: list[map[string, any]]
+) std.Step {
+  let items = [build_client_item(c) for c in clients]
+  return rest.resource_set {
+    desc          = "client fixed IPs"
+    query         = legacy_list_user(
+      siteId = site,
+      check  = rest.jq { expr = ".data[]" },
+    )
+    key           = rest.jq { expr = ".mac" }
+    orphan_filter = rest.jq { expr = "select(.use_fixedip == true)" }
+    items         = items
+    missing       = legacy_create_user(siteId = site)
+    found         = legacy_update_user(siteId = site, id = "{id}")
+    orphan        = legacy_update_user(siteId = site, id = "{id}")
+    bindings      = {
+      "id": rest.jq { expr = "._id" },
+    }
+    orphan_state  = {
+      "use_fixedip": false,
+      "fixed_ip": "",
+      "local_dns_record_enabled": false,
+      "local_dns_record": "",
+    }
+  }
+}
+
+// Networks
+// -----------------------------------------------------------------------------
+//
+// Ensures a network exists with the given name. If missing, creates
+// it. If present, updates it to match the declared state.
+
+pub decl network(
+  site_id:    string
+  name:       string
+  vlan_id:    int
+  management: string = "GATEWAY"
+  enabled:    bool = true
+) std.Step {
+  return rest.resource {
+    desc     = "network: " + name
+    query    = get_networks_overview_page(
+      siteId = site_id,
+      check  = rest.jq {
+        expr = ".data[] | select(.name == \"" + name + "\")"
+      },
+    )
+    missing  = create_network(siteId = site_id)
+    found    = update_network(siteId = site_id, networkId = "{id}")
+    bindings = {
+      "id": rest.jq { expr = ".id" },
+    }
+    state    = {
+      "name": name,
+      "vlanId": vlan_id,
+      "management": management,
+      "enabled": enabled,
+    }
+  }
+}

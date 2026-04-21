@@ -1,0 +1,529 @@
+// Auto-generated smoke test
+// Verifies each generated function sends the expected method and path.
+
+module unifi
+
+import "std"
+import "std/rest"
+import "std/test"
+import "std/test/matchers"
+
+let api = test.target_rest_mock(
+  name = "api",
+  base_url = "http://localhost",
+  routes = {
+    "GET /proxy/network/integration/v1/countries": test.response(status = 200),
+    "GET /proxy/network/integration/v1/dpi/applications": test.response(status = 200),
+    "GET /proxy/network/integration/v1/dpi/categories": test.response(status = 200),
+    "GET /proxy/network/integration/v1/info": test.response(status = 200),
+    "GET /proxy/network/integration/v1/pending-devices": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/acl-rules": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/acl-rules": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/acl-rules/ordering": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/acl-rules/ordering": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/acl-rules/1": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/acl-rules/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/acl-rules/1": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/clients": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/clients/1": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/clients/1/actions": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/device-tags": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/devices": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/devices": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/devices/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/devices/1": test.response(status = 204),
+    "POST /proxy/network/integration/v1/sites/1/devices/1/actions": test.response(status = 201),
+    "POST /proxy/network/integration/v1/sites/1/devices/1/interfaces/ports/1/actions": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/devices/1/statistics/latest": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/dns/policies": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/dns/policies": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/dns/policies/1": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/dns/policies/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/dns/policies/1": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/firewall/policies": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/firewall/policies": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/firewall/policies/ordering": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/firewall/policies/ordering": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/firewall/policies/1": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/firewall/policies/1": test.response(status = 200),
+    "PATCH /proxy/network/integration/v1/sites/1/firewall/policies/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/firewall/policies/1": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/firewall/zones": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/firewall/zones": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/firewall/zones/1": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/firewall/zones/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/firewall/zones/1": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/hotspot/vouchers": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/hotspot/vouchers": test.response(status = 201),
+    "DELETE /proxy/network/integration/v1/sites/1/hotspot/vouchers": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/hotspot/vouchers/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/hotspot/vouchers/1": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/networks": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/networks": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/networks/1": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/networks/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/networks/1": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/networks/1/references": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/radius/profiles": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/traffic-matching-lists": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/traffic-matching-lists": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/traffic-matching-lists/1": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/traffic-matching-lists/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/traffic-matching-lists/1": test.response(status = 204),
+    "GET /proxy/network/integration/v1/sites/1/vpn/servers": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/vpn/site-to-site-tunnels": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/wans": test.response(status = 200),
+    "GET /proxy/network/integration/v1/sites/1/wifi/broadcasts": test.response(status = 200),
+    "POST /proxy/network/integration/v1/sites/1/wifi/broadcasts": test.response(status = 201),
+    "GET /proxy/network/integration/v1/sites/1/wifi/broadcasts/1": test.response(status = 200),
+    "PUT /proxy/network/integration/v1/sites/1/wifi/broadcasts/1": test.response(status = 200),
+    "DELETE /proxy/network/integration/v1/sites/1/wifi/broadcasts/1": test.response(status = 204),
+  },
+  expect_requests = [
+    test.request(method = "GET", path = "/proxy/network/integration/v1/countries"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/dpi/applications"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/dpi/categories"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/info"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/pending-devices"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/acl-rules"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/acl-rules",
+      body   = matchers.has_substring("\"action\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/acl-rules/ordering"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/acl-rules/ordering",
+      body   = matchers.has_substring("\"orderedAclRuleIds\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/acl-rules/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/acl-rules/1",
+      body   = matchers.has_substring("\"action\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/acl-rules/1"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/clients"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/clients/1"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/clients/1/actions",
+      body   = matchers.has_substring("\"action\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/device-tags"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/devices"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/devices",
+      body   = matchers.has_substring("\"ignoreDeviceLimit\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/devices/1"),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/devices/1"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/devices/1/actions",
+      body   = matchers.has_substring("\"action\""),
+    ),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/devices/1/interfaces/ports/1/actions",
+      body   = matchers.has_substring("\"action\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/devices/1/statistics/latest"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/dns/policies"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/dns/policies",
+      body   = matchers.has_substring("\"enabled\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/dns/policies/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/dns/policies/1",
+      body   = matchers.has_substring("\"enabled\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/dns/policies/1"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/firewall/policies"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/firewall/policies",
+      body   = matchers.has_substring("\"action\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/firewall/policies/ordering"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/firewall/policies/ordering",
+      body   = matchers.has_substring("\"orderedFirewallPolicyIds\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/firewall/policies/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/firewall/policies/1",
+      body   = matchers.has_substring("\"action\""),
+    ),
+    test.request(
+      method = "PATCH",
+      path   = "/proxy/network/integration/v1/sites/1/firewall/policies/1",
+      body   = matchers.has_substring("\"loggingEnabled\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/firewall/policies/1"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/firewall/zones"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/firewall/zones",
+      body   = matchers.has_substring("\"name\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/firewall/zones/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/firewall/zones/1",
+      body   = matchers.has_substring("\"name\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/firewall/zones/1"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/hotspot/vouchers"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/hotspot/vouchers",
+      body   = matchers.has_substring("\"name\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/hotspot/vouchers"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/hotspot/vouchers/1"),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/hotspot/vouchers/1"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/networks"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/networks",
+      body   = matchers.has_substring("\"enabled\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/networks/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/networks/1",
+      body   = matchers.has_substring("\"enabled\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/networks/1"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/networks/1/references"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/radius/profiles"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/traffic-matching-lists"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/traffic-matching-lists",
+      body   = matchers.has_substring("\"name\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/traffic-matching-lists/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/traffic-matching-lists/1",
+      body   = matchers.has_substring("\"name\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/traffic-matching-lists/1"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/vpn/servers"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/vpn/site-to-site-tunnels"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/wans"),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/wifi/broadcasts"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/integration/v1/sites/1/wifi/broadcasts",
+      body   = matchers.has_substring("\"clientIsolationEnabled\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/integration/v1/sites/1/wifi/broadcasts/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/integration/v1/sites/1/wifi/broadcasts/1",
+      body   = matchers.has_substring("\"clientIsolationEnabled\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/integration/v1/sites/1/wifi/broadcasts/1"),
+  ],
+)
+
+std.deploy(name = "smoke", targets = [api]) {
+  get_countries(
+    check = rest.status { code = 200 },
+  )
+  get_dpi_applications(
+    check = rest.status { code = 200 },
+  )
+  get_dpi_application_categories(
+    check = rest.status { code = 200 },
+  )
+  get_info(
+    check = rest.status { code = 200 },
+  )
+  get_pending_device_page(
+    check = rest.status { code = 200 },
+  )
+  get_site_overview_page(
+    check = rest.status { code = 200 },
+  )
+  get_acl_rule_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_acl_rule(
+    siteId = "1",
+    action = "test",
+  )
+  get_acl_rule_ordering(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_acl_rule_ordering(
+    siteId = "1",
+    ordered_acl_rule_ids = "test",
+  )
+  get_acl_rule(
+    aclRuleId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_acl_rule(
+    aclRuleId = "1",
+    siteId = "1",
+    action = "test",
+  )
+  delete_acl_rule(
+    aclRuleId = "1",
+    siteId = "1",
+  )
+  get_connected_client_overview_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_connected_client_details(
+    clientId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  execute_connected_client_action(
+    clientId = "1",
+    siteId = "1",
+    action = "test",
+  )
+  get_device_tag_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_adopted_device_overview_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  adopt_device(
+    siteId = "1",
+    ignore_device_limit = "test",
+  )
+  get_adopted_device_details(
+    siteId = "1",
+    deviceId = "1",
+    check = rest.status { code = 200 },
+  )
+  remove_device(
+    siteId = "1",
+    deviceId = "1",
+  )
+  execute_adopted_device_action(
+    siteId = "1",
+    deviceId = "1",
+    action = "test",
+  )
+  execute_port_action(
+    portIdx = "1",
+    siteId = "1",
+    deviceId = "1",
+    action = "test",
+  )
+  get_adopted_device_latest_statistics(
+    siteId = "1",
+    deviceId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_dns_policy_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_dns_policy(
+    siteId = "1",
+    enabled = "test",
+  )
+  get_dns_policy(
+    dnsPolicyId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_dns_policy(
+    dnsPolicyId = "1",
+    siteId = "1",
+    enabled = "test",
+  )
+  delete_dns_policy(
+    dnsPolicyId = "1",
+    siteId = "1",
+  )
+  get_firewall_policies(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_firewall_policy(
+    siteId = "1",
+    action = "test",
+  )
+  get_firewall_policy_ordering(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_firewall_policy_ordering(
+    siteId = "1",
+    ordered_firewall_policy_ids = "test",
+  )
+  get_firewall_policy(
+    firewallPolicyId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_firewall_policy(
+    firewallPolicyId = "1",
+    siteId = "1",
+    action = "test",
+  )
+  patch_firewall_policy(
+    firewallPolicyId = "1",
+    siteId = "1",
+    logging_enabled = "test",
+  )
+  delete_firewall_policy(
+    firewallPolicyId = "1",
+    siteId = "1",
+  )
+  get_firewall_zones(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_firewall_zone(
+    siteId = "1",
+    name = "test",
+  )
+  get_firewall_zone(
+    firewallZoneId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_firewall_zone(
+    firewallZoneId = "1",
+    siteId = "1",
+    name = "test",
+  )
+  delete_firewall_zone(
+    firewallZoneId = "1",
+    siteId = "1",
+  )
+  get_vouchers(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_vouchers(
+    siteId = "1",
+    name = "test",
+  )
+  delete_vouchers(
+    siteId = "1",
+  )
+  get_voucher(
+    voucherId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  delete_voucher(
+    voucherId = "1",
+    siteId = "1",
+  )
+  get_networks_overview_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_network(
+    siteId = "1",
+    enabled = "test",
+  )
+  get_network_details(
+    networkId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_network(
+    networkId = "1",
+    siteId = "1",
+    enabled = "test",
+  )
+  delete_network(
+    networkId = "1",
+    siteId = "1",
+  )
+  get_network_references(
+    networkId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_radius_profile_overview_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_traffic_matching_lists(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_traffic_matching_list(
+    siteId = "1",
+    name = "test",
+  )
+  get_traffic_matching_list(
+    trafficMatchingListId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_traffic_matching_list(
+    trafficMatchingListId = "1",
+    siteId = "1",
+    name = "test",
+  )
+  delete_traffic_matching_list(
+    trafficMatchingListId = "1",
+    siteId = "1",
+  )
+  get_vpn_server_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_site_to_site_vpn_tunnel_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_wans_overview_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  get_wifi_broadcast_page(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  create_wifi_broadcast(
+    siteId = "1",
+    client_isolation_enabled = "test",
+  )
+  get_wifi_broadcast_details(
+    wifiBroadcastId = "1",
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  update_wifi_broadcast(
+    wifiBroadcastId = "1",
+    siteId = "1",
+    client_isolation_enabled = "test",
+  )
+  delete_wifi_broadcast(
+    wifiBroadcastId = "1",
+    siteId = "1",
+  )
+}
+

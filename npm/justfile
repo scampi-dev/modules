@@ -22,4 +22,4 @@ gen version=default_version:
 
 [doc("Run module tests")]
 test:
-  scampi test proxy_host_test.scampi
+  scampi test ./...

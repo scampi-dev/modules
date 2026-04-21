@@ -1,0 +1,1934 @@
+// Auto-generated smoke test
+// Verifies each generated function sends the expected method and path.
+
+module unifi
+
+import "std"
+import "std/rest"
+import "std/test"
+import "std/test/matchers"
+
+let api = test.target_rest_mock(
+  name = "api",
+  base_url = "http://localhost",
+  routes = {
+    "GET /proxy/network/api/s/1/get/setting/auto_speedtest": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/baresip": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/broadcast": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/connectivity": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/country": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/dashboard": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/doh": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/dpi": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/element_adopt": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/ether_lighting": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/evaluation_score": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/global_ap": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/global_nat": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/global_switch": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/guest_access": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/ips": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/lcm": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/locale": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/magic_site_to_site_vpn": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/mdns": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/mgmt": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/netflow": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/network_optimization": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/ntp": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/porta": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/radio_ai": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/radius": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/rsyslogd": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/snmp": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/ssl_inspection": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_cloudaccess": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_events": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_fwupdate": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_identity": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_mail": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_mgmt": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_sdn": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/super_smtp": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/teleport": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/traffic_flow": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/usg": test.response(status = 200),
+    "GET /proxy/network/api/s/1/get/setting/usw": test.response(status = 200),
+    "GET /proxy/network/api/s/1/rest/account": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/account": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/account/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/account/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/account/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/broadcastgroup": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/broadcastgroup": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/broadcastgroup/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/broadcastgroup/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/broadcastgroup/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/channelplan": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/channelplan": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/channelplan/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/channelplan/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/channelplan/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/dashboard": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/dashboard": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/dashboard/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/dashboard/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/dashboard/1": test.response(status = 204),
+    "POST /proxy/network/api/s/1/rest/device": test.response(status = 201),
+    "PUT /proxy/network/api/s/1/rest/device/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/device/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/dhcpoption": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/dhcpoption": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/dhcpoption/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/dhcpoption/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/dhcpoption/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/dpiapp": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/dpiapp": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/dpiapp/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/dpiapp/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/dpiapp/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/dpigroup": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/dpigroup": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/dpigroup/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/dpigroup/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/dpigroup/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/dynamicdns": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/dynamicdns": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/dynamicdns/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/dynamicdns/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/dynamicdns/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/firewallgroup": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/firewallgroup": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/firewallgroup/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/firewallgroup/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/firewallgroup/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/firewallrule": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/firewallrule": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/firewallrule/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/firewallrule/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/firewallrule/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/heatmap": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/heatmap": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/heatmap/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/heatmap/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/heatmap/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/heatmappoint": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/heatmappoint": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/heatmappoint/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/heatmappoint/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/heatmappoint/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/hotspot2conf": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/hotspot2conf": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/hotspot2conf/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/hotspot2conf/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/hotspot2conf/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/hotspotop": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/hotspotop": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/hotspotop/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/hotspotop/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/hotspotop/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/hotspotpackage": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/hotspotpackage": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/hotspotpackage/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/hotspotpackage/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/hotspotpackage/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/map": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/map": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/map/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/map/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/map/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/mediafile": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/mediafile": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/mediafile/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/mediafile/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/mediafile/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/networkconf": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/networkconf": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/networkconf/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/networkconf/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/networkconf/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/portconf": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/portconf": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/portconf/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/portconf/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/portconf/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/portforward": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/portforward": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/portforward/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/portforward/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/portforward/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/radiusprofile": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/radiusprofile": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/radiusprofile/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/radiusprofile/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/radiusprofile/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/routing": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/routing": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/routing/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/routing/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/routing/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/scheduletask": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/scheduletask": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/scheduletask/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/scheduletask/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/scheduletask/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/spatialrecord": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/spatialrecord": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/spatialrecord/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/spatialrecord/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/spatialrecord/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/tag": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/tag": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/tag/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/tag/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/tag/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/user": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/user": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/user/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/user/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/user/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/usergroup": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/usergroup": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/usergroup/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/usergroup/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/usergroup/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/virtualdevice": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/virtualdevice": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/virtualdevice/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/virtualdevice/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/virtualdevice/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/wlanconf": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/wlanconf": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/wlanconf/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/wlanconf/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/wlanconf/1": test.response(status = 204),
+    "GET /proxy/network/api/s/1/rest/wlangroup": test.response(status = 200),
+    "POST /proxy/network/api/s/1/rest/wlangroup": test.response(status = 201),
+    "GET /proxy/network/api/s/1/rest/wlangroup/1": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/rest/wlangroup/1": test.response(status = 200),
+    "DELETE /proxy/network/api/s/1/rest/wlangroup/1": test.response(status = 204),
+    "PUT /proxy/network/api/s/1/set/setting/auto_speedtest": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/baresip": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/broadcast": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/connectivity": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/country": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/dashboard": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/doh": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/dpi": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/element_adopt": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/ether_lighting": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/evaluation_score": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/global_ap": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/global_nat": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/global_switch": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/guest_access": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/ips": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/lcm": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/locale": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/magic_site_to_site_vpn": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/mdns": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/mgmt": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/netflow": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/network_optimization": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/ntp": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/porta": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/radio_ai": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/radius": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/rsyslogd": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/snmp": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/ssl_inspection": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_cloudaccess": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_events": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_fwupdate": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_identity": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_mail": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_mgmt": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_sdn": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/super_smtp": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/teleport": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/traffic_flow": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/usg": test.response(status = 200),
+    "PUT /proxy/network/api/s/1/set/setting/usw": test.response(status = 200),
+    "GET /proxy/network/api/s/1/stat/device": test.response(status = 200),
+    "GET /proxy/network/api/s/1/stat/device/1": test.response(status = 200),
+  },
+  expect_requests = [
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/auto_speedtest"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/baresip"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/broadcast"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/connectivity"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/country"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/dashboard"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/doh"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/dpi"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/element_adopt"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/ether_lighting"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/evaluation_score"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/global_ap"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/global_nat"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/global_switch"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/guest_access"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/ips"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/lcm"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/locale"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/magic_site_to_site_vpn"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/mdns"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/mgmt"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/netflow"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/network_optimization"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/ntp"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/porta"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/radio_ai"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/radius"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/rsyslogd"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/snmp"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/ssl_inspection"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_cloudaccess"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_events"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_fwupdate"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_identity"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_mail"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_mgmt"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_sdn"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/super_smtp"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/teleport"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/traffic_flow"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/usg"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/get/setting/usw"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/account"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/account",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/account/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/account/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/account/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/broadcastgroup"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/broadcastgroup",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/broadcastgroup/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/broadcastgroup/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/broadcastgroup/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/channelplan"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/channelplan",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/channelplan/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/channelplan/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/channelplan/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dashboard"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/dashboard",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dashboard/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/dashboard/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/dashboard/1"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/device",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/device/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/device/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dhcpoption"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/dhcpoption",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dhcpoption/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/dhcpoption/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/dhcpoption/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dpiapp"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/dpiapp",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dpiapp/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/dpiapp/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/dpiapp/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dpigroup"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/dpigroup",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dpigroup/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/dpigroup/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/dpigroup/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dynamicdns"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/dynamicdns",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/dynamicdns/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/dynamicdns/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/dynamicdns/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/firewallgroup"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/firewallgroup",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/firewallgroup/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/firewallgroup/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/firewallgroup/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/firewallrule"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/firewallrule",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/firewallrule/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/firewallrule/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/firewallrule/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/heatmap"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/heatmap",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/heatmap/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/heatmap/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/heatmap/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/heatmappoint"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/heatmappoint",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/heatmappoint/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/heatmappoint/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/heatmappoint/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/hotspot2conf"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/hotspot2conf",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/hotspot2conf/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/hotspot2conf/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/hotspot2conf/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/hotspotop"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/hotspotop",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/hotspotop/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/hotspotop/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/hotspotop/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/hotspotpackage"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/hotspotpackage",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/hotspotpackage/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/hotspotpackage/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/hotspotpackage/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/map"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/map",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/map/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/map/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/map/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/mediafile"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/mediafile",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/mediafile/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/mediafile/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/mediafile/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/networkconf"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/networkconf",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/networkconf/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/networkconf/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/networkconf/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/portconf"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/portconf",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/portconf/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/portconf/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/portconf/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/portforward"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/portforward",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/portforward/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/portforward/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/portforward/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/radiusprofile"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/radiusprofile",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/radiusprofile/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/radiusprofile/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/radiusprofile/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/routing"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/routing",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/routing/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/routing/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/routing/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/scheduletask"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/scheduletask",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/scheduletask/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/scheduletask/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/scheduletask/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/spatialrecord"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/spatialrecord",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/spatialrecord/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/spatialrecord/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/spatialrecord/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/tag"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/tag",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/tag/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/tag/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/tag/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/user"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/user",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/user/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/user/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/user/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/usergroup"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/usergroup",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/usergroup/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/usergroup/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/usergroup/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/virtualdevice"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/virtualdevice",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/virtualdevice/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/virtualdevice/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/virtualdevice/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/wlanconf"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/wlanconf",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/wlanconf/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/wlanconf/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/wlanconf/1"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/wlangroup"),
+    test.request(
+      method = "POST",
+      path   = "/proxy/network/api/s/1/rest/wlangroup",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/rest/wlangroup/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/rest/wlangroup/1",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "DELETE", path = "/proxy/network/api/s/1/rest/wlangroup/1"),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/auto_speedtest",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/baresip",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/broadcast",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/connectivity",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/country",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/dashboard",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/doh",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/dpi",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/element_adopt",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/ether_lighting",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/evaluation_score",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/global_ap",
+      body   = matchers.has_substring("\"6e_channel_size\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/global_nat",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/global_switch",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/guest_access",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/ips",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/lcm",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/locale",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/magic_site_to_site_vpn",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/mdns",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/mgmt",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/netflow",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/network_optimization",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/ntp",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/porta",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/radio_ai",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/radius",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/rsyslogd",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/snmp",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/ssl_inspection",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_cloudaccess",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_events",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_fwupdate",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_identity",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_mail",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_mgmt",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_sdn",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/super_smtp",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/teleport",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/traffic_flow",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/usg",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(
+      method = "PUT",
+      path   = "/proxy/network/api/s/1/set/setting/usw",
+      body   = matchers.has_substring("\"_id\""),
+    ),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/stat/device"),
+    test.request(method = "GET", path = "/proxy/network/api/s/1/stat/device/1"),
+  ],
+)
+
+std.deploy(name = "smoke", targets = [api]) {
+  legacy_get_setting_auto_speedtest(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_baresip(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_broadcast(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_connectivity(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_country(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_dashboard(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_doh(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_dpi(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_element_adopt(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_ether_lighting(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_evaluation_score(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_global_ap(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_global_nat(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_global_switch(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_guest_access(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_ips(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_lcm(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_locale(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_magic_site_to_site_vpn(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_mdns(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_mgmt(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_netflow(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_network_optimization(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_ntp(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_porta(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_radio_ai(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_radius(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_rsyslogd(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_snmp(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_ssl_inspection(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_cloudaccess(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_events(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_fwupdate(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_identity(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_mail(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_mgmt(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_sdn(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_super_smtp(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_teleport(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_traffic_flow(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_usg(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_setting_usw(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_list_account(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_account(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_account(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_account(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_account(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_broadcast_group(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_broadcast_group(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_broadcast_group(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_broadcast_group(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_broadcast_group(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_channel_plan(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_channel_plan(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_channel_plan(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_channel_plan(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_channel_plan(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_dashboard(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_dashboard(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_dashboard(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_dashboard(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_dashboard(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_create_device(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_device(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_device(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_d_h_c_p_option(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_d_h_c_p_option(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_d_h_c_p_option(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_d_h_c_p_option(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_d_h_c_p_option(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_dpi_app(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_dpi_app(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_dpi_app(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_dpi_app(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_dpi_app(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_dpi_group(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_dpi_group(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_dpi_group(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_dpi_group(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_dpi_group(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_dynamic_d_n_s(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_dynamic_d_n_s(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_dynamic_d_n_s(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_dynamic_d_n_s(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_dynamic_d_n_s(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_firewall_group(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_firewall_group(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_firewall_group(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_firewall_group(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_firewall_group(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_firewall_rule(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_firewall_rule(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_firewall_rule(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_firewall_rule(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_firewall_rule(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_heat_map(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_heat_map(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_heat_map(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_heat_map(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_heat_map(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_heat_map_point(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_heat_map_point(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_heat_map_point(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_heat_map_point(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_heat_map_point(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_hotspot2_conf(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_hotspot2_conf(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_hotspot2_conf(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_hotspot2_conf(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_hotspot2_conf(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_hotspot_op(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_hotspot_op(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_hotspot_op(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_hotspot_op(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_hotspot_op(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_hotspot_package(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_hotspot_package(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_hotspot_package(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_hotspot_package(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_hotspot_package(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_map(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_map(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_map(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_map(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_map(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_media_file(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_media_file(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_media_file(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_media_file(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_media_file(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_network(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_network(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_network(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_network(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_network(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_port_profile(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_port_profile(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_port_profile(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_port_profile(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_port_profile(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_port_forward(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_port_forward(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_port_forward(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_port_forward(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_port_forward(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_r_a_d_i_u_s_profile(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_r_a_d_i_u_s_profile(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_r_a_d_i_u_s_profile(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_r_a_d_i_u_s_profile(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_r_a_d_i_u_s_profile(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_routing(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_routing(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_routing(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_routing(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_routing(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_schedule_task(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_schedule_task(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_schedule_task(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_schedule_task(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_schedule_task(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_spatial_record(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_spatial_record(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_spatial_record(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_spatial_record(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_spatial_record(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_tag(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_tag(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_tag(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_tag(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_tag(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_user(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_user(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_user(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_user(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_user(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_user_group(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_user_group(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_user_group(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_user_group(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_user_group(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_virtual_device(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_virtual_device(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_virtual_device(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_virtual_device(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_virtual_device(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_w_l_a_n(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_w_l_a_n(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_w_l_a_n(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_w_l_a_n(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_w_l_a_n(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_list_w_l_a_n_group(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_create_w_l_a_n_group(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_get_w_l_a_n_group(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_update_w_l_a_n_group(
+    siteId = "1",
+    id = "1",
+    _id = "test",
+  )
+  legacy_delete_w_l_a_n_group(
+    siteId = "1",
+    id = "1",
+  )
+  legacy_update_setting_auto_speedtest(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_baresip(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_broadcast(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_connectivity(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_country(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_dashboard(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_doh(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_dpi(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_element_adopt(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_ether_lighting(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_evaluation_score(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_global_ap(
+    siteId = "1",
+    _6e_channel_size = "test",
+  )
+  legacy_update_setting_global_nat(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_global_switch(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_guest_access(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_ips(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_lcm(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_locale(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_magic_site_to_site_vpn(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_mdns(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_mgmt(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_netflow(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_network_optimization(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_ntp(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_porta(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_radio_ai(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_radius(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_rsyslogd(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_snmp(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_ssl_inspection(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_cloudaccess(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_events(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_fwupdate(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_identity(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_mail(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_mgmt(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_sdn(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_super_smtp(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_teleport(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_traffic_flow(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_usg(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_update_setting_usw(
+    siteId = "1",
+    _id = "test",
+  )
+  legacy_list_device(
+    siteId = "1",
+    check = rest.status { code = 200 },
+  )
+  legacy_get_device(
+    siteId = "1",
+    id = "1",
+    check = rest.status { code = 200 },
+  )
+}
+

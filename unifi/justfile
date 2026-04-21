@@ -1,0 +1,40 @@
+integration_spec_url := "https://10.10.1.1/proxy/network/api-docs/integration.json"
+legacy_spec_url := "https://raw.githubusercontent.com/ubiquiti-community/unifi-api/main/assets/openapi.yaml"
+
+[default]
+[doc("Show available recipes")]
+@help:
+  just --unsorted --list
+
+[doc("Regenerate both API modules from upstream specs")]
+gen: gen-integration gen-legacy
+
+[doc("Regenerate unifi.api.scampi from the controller's Integration API")]
+gen-integration:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  tmp=$(mktemp)
+  echo "Fetching Integration API spec from controller..."
+  curl -sfkL -H "X-API-Key: ${UNIFI_API_KEY:?set UNIFI_API_KEY}" "{{integration_spec_url}}" -o "$tmp"
+  scampi gen api --module unifi --prefix=/proxy/network -o unifi.api.scampi "$tmp"
+  rm -f "$tmp"
+  echo "Regenerated unifi.api.scampi"
+
+[doc("Regenerate unifi_legacy.api.scampi from the community classic API spec")]
+gen-legacy:
+  #!/usr/bin/env bash
+  set -euo pipefail
+  tmp=$(mktemp)
+  echo "Fetching legacy API spec from GitHub..."
+  curl -sfL "{{legacy_spec_url}}" -o "$tmp"
+  scampi gen api --module unifi --name-prefix=legacy_ -o unifi_legacy.api.scampi "$tmp"
+  rm -f "$tmp"
+  echo "Regenerated unifi_legacy.api.scampi"
+
+[doc("Format all scampi files")]
+fmt:
+  scampi fmt ./...
+
+[doc("Run module tests")]
+test:
+  scampi test ./...
