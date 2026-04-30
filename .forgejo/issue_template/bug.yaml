@@ -66,17 +66,17 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: target
+  - type: textarea
+    id: host
     attributes:
-      label: Target type
-      description: What was scampi running against?
-      options:
-        - local
-        - ssh
-        - rest
-        - test (in-memory)
-        - other / unsure
+      label: Host environment
+      description: |
+        Output of `uname -a` on the target host (with the hostname
+        removed if you'd rather not share it). Gives kernel + arch +
+        Darwin/Linux version in one line — useful for reproducing
+        platform-specific module bugs.
+      placeholder: Linux 6.6.0 ... x86_64
+      render: text
     validations:
       required: false
 
