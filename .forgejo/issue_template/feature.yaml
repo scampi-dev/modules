@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Hi, and thanks for thinking about this!
+        Hi, and thanks for sketching a feature idea!
 
         Module scope is opinionated — a short discussion before you write
         code is usually the cheapest alignment. The fields below help me
