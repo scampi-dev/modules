@@ -1,0 +1,90 @@
+name: Bug Report
+about: A module behaves wrong or fails on a target
+title: ""
+labels:
+  - Kind/Bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Hi, and thanks for taking the time to file this!
+
+        A few fields below help me reproduce and triage faster. Skip any
+        you genuinely don't know — "not sure" is a fine answer.
+
+  - type: input
+    id: module
+    attributes:
+      label: Affected module
+      description: Which module is misbehaving (e.g. `unifi/site`, `npm/install`)?
+      placeholder: e.g. unifi/site
+    validations:
+      required: true
+
+  - type: input
+    id: scampi_version
+    attributes:
+      label: scampi version
+      description: Output of `scampi --version`
+      placeholder: e.g. v0.1.0-alpha.7
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: A short description of the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Minimal config that triggers the issue. A small inline `.scampi`
+        snippet is ideal; redact secrets / hostnames as needed.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: |
+        Include the error message verbatim if there was one.
+      render: text
+    validations:
+      required: true
+
+  - type: dropdown
+    id: target
+    attributes:
+      label: Target type
+      description: What was scampi running against?
+      options:
+        - local
+        - ssh
+        - rest
+        - test (in-memory)
+        - other / unsure
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Anything else?
+      description: |
+        Workarounds, related issues, hunches.
+    validations:
+      required: false
